@@ -728,6 +728,7 @@ GPS::run()
 
 			if (_serial_fd < 0) {
 				PX4_ERR("failed to open %s err: %d", _port, errno);
+				px4_sleep(1);
 				continue;
 			}
 
@@ -739,6 +740,7 @@ GPS::run()
 
 				if (status_value < 0) {
 					PX4_ERR("SPI_IOC_WR_MAX_SPEED_HZ failed for %s (%d)", _port, errno);
+					px4_sleep(1);
 					continue;
 				}
 
@@ -746,6 +748,7 @@ GPS::run()
 
 				if (status_value < 0) {
 					PX4_ERR("SPI_IOC_RD_MAX_SPEED_HZ failed for %s (%d)", _port, errno);
+					px4_sleep(1);
 					continue;
 				}
 			}
